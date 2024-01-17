@@ -2,9 +2,15 @@
 
 This where I throw all my question and notes to check when I have time for them.
 
+## Open source
+
+talk in the intro and genera context how all the tools  that I used are open source and free to use. As well as the refrences that I used for this report.
+
 ## Order of authors
 
 I want to mention my supervisors by alphabetical order, should I mention this fact?
+
+How should I differentiate between Ariel and the others?
 
 ## Affiliation and role
 
@@ -17,3 +23,42 @@ Discover how to add your collaboration with the team members.
 ## Project page from the university
 
 Work a bit on the project page provided by LPI and cite it where applicable.
+
+## Table of contents
+
+Add a table of contents at the beginning of the document.
+
+## Logos
+
+Should I add the logos of the university and the lab in the report or just the presentation?
+
+## Baker lab
+
+add baker lab website to references.
+
+## acknowledgements
+
+don't forget:
+
+- LPI
+- Baker lab team members who responded to my emails
+- my supervisors
+- my team members
+- Minc's team members
+- ask for tools and resources that I used?!!
+
+## Keywords
+
+should I add keywords to the report?
+
+## check the following links
+
+https://www.bakerlab.org/2023/03/30/rf-diffusion-now-free-and-open-source/
+
+https://www.biorxiv.org/content/10.1101/2022.12.09.519842v2
+
+https://github.com/RosettaCommons/RFdiffusion
+
+https://colab.research.google.com/github/sokrypton/ColabDesign/blob/v1.1.1/rf/examples/diffusion.ipynb
+
+https://www.youtube.com/watch?v=wIHwHDt2NoI

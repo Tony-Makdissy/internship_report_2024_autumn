@@ -6,6 +6,13 @@ This where I throw all my question and notes to check when I have time for them.
 
 talk in the intro and genera context how all the tools  that I used are open source and free to use. As well as the refrences that I used for this report.
 
+## refrerence to github repos and colab notebooks
+
+For All the tools.
+
+- RFdiffusion
+- 
+
 ## Order of authors
 
 I want to mention my supervisors by alphabetical order, should I mention this fact?
@@ -50,15 +57,3 @@ don't forget:
 ## Keywords
 
 should I add keywords to the report?
-
-## check the following links
-
-https://www.bakerlab.org/2023/03/30/rf-diffusion-now-free-and-open-source/
-
-https://www.biorxiv.org/content/10.1101/2022.12.09.519842v2
-
-https://github.com/RosettaCommons/RFdiffusion
-
-https://colab.research.google.com/github/sokrypton/ColabDesign/blob/v1.1.1/rf/examples/diffusion.ipynb
-
-https://www.youtube.com/watch?v=wIHwHDt2NoI

@@ -10,6 +10,35 @@
 \usepackage{csquotes}
 \usepackage{xcolor}
 \usepackage{booktabs}
+\usepackage{listings}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
 
 % Page formatting
 \geometry{a4paper, margin=1in}
@@ -28,12 +57,7 @@
 
 % Title
 \title{AI-assisted Design of virus-binding proteins for the International Genetically Engineered Machine comptetion}
-\author{Tony MAKDISSY\thanks{Learning Planet Institute} \and 
-Amir PANDI\thanks{Affiliation and role} \and 
-Ariel LINDNER\thanks{Affiliation and role} \and
-Ernest MORDRET\thanks{Affiliation and role} \and
-Helena SHOMAR\thanks{Affiliation and role}}
-
+\author{Tony MAKDISSY\thanks{Learning Planet Institute}}
 
 
 
@@ -42,9 +66,11 @@ Helena SHOMAR\thanks{Affiliation and role}}
 
 % Abstract
 \begin{abstract}
-    Contains in clear language the problem statement, the indication of methodology, the main findings and the principal conclusion.
-\end{abstract}
 
+    \emph{De novo} protein design, the art of creating functional proteins from scratch, has evolved over the years, transitioning from manual structure crafting to sophisticated computational approaches. This report details our exploration in \emph{de novo} protein design, specifically focusing on the computational design pipeline developed to generate potential protein binders for immobilizing sexually transmitted infection (STI) proteins within a gel mesh network. Leveraging tools like RFdiffusion, HDOCK, and ChimeraX, we employed a theoretically automated workflow to inspect target proteins, select hotspots, and validate sequences through pull-down assays. Despite facing challenges in fully automating hotspot identification and GPU-dependent execution, our pipeline demonstrated promising results, with three sequences exhibiting positive binding to the T4 bacteriophage. The success of this proof-of-concept provides a foundation for scaling up the approach and exploring more complex protein designs.
+    
+    \end{abstract}
+    
 % General Context
 \section{General Context}
 
@@ -76,28 +102,11 @@ My main role in this project was generating and \emph{in-silico} testing of new 
 % Supervisors
 The team is supervised by 4 supervisors: Ariel Lindner, Ernest Mordret, Helena 
 Shomar, and Amir Pandi \cite{paris_bettencourt_team}.
-\textcolor{red}{Should I talk more about the supervisors ?}
-
-\textcolor{red}{I should state clearly that in this report I will only talk about my work for \emph{de novo} protein design and not about the other parts of the project. with mentioning a bit about the overall process.}
-
-
-\subsection{To delete}
-
-\subsubsection{Task description}
-
-Describe what your laboratory, company, or institution is doing in general. 
-Describe precisely what your team does and what their expertise is in a few lines. (don't copy-paste a boiler).
-Who are the key people you worked with and how did they acquire their expertise (mention their degrees, and/or 
-professional experience…). Mention any other people you or your team collaborated with during your internship (limited to the particular topic you worked on). 
-Add 3-4 lines on your integration to the institution and the work environment.
-Connection to the sustainable development goals (list the SDGs), if any.
-
-
 
 % Introduction
 \section{Introduction}
 
-\emph{De novo} \textcolor{red}{Should I capitalize the 'D" in de novo?} protein design is the field of science that addresses the 
+\emph{de novo} Protein design is the field of science that addresses the 
 fundamental question: "Is our knowledge of the principles of folding 
 and function sufficient to design proteins from scratch?" 
 \cite{korendovych2020novo} or, in broader terms, "Are natural proteins 
@@ -131,7 +140,7 @@ saw the design of a  TOP7 protein, incorporating fragments from the
 Protein Data Bank to construct a structure not observed in nature \cite
 {kuhlman2003design}.
 
-\subsection{advancements in Molecular and Computational Biology}
+\subsection{Advancements in Molecular and Computational Biology}
 
 The advent of accurate protein structure prediction tools exemplified 
 by AlphaFold2 \cite{jumper2021highly}, RoseTTAFold \cite
@@ -166,7 +175,7 @@ length, binding properties, and amino acid sequences \cite{
 watson2023novo}. It does so by first predicting a suitable structure 
 for the given constraints, then generating a sequence that folds into 
 the predicted structure using ProteinMPNNs.
-The field of \emph{de novo} protein design also welcomes other ML approaches, 
+The field of \emph{de novo} protein design also welcomed other ML approaches, 
 such as RosettaSurf \cite{scheck2022rosettasurf}, which utilizes a surface-centric computational design approach,
 unlike ProteinMPNNs, which are position-centric (i.e. try first to predict the position of the amino acids and allosteric angles).
 
@@ -190,57 +199,44 @@ Also we found a lot of resources and tutorials on how to use RFdiffusion (online
 \href{https://youtu.be/aVQQuoToTJA?si=PnQvJluY3ZPHo4TO}{Link}).
 along with clean and well-documented code on GitHub \href{https://github.com/RosettaCommons/RFdiffusion}{Link}.
 
-\textbf{NOTE:} I should mention that all the discussed tools in this 
-report are open-source and/or free to use. Also, all the references used  
-are free to access.
+\subsection{Free and Open-Source Software (FOSS)}
 
+It is noteworthy that every tool utilized in this project adheres to the principles of open-source and/or free usage. Our team advocates for the openness and accessibility of scientific endeavors to a broader audience. We exclusively employed tools that align with the tenets outlined in "What is Free Software?" \cite{gun_foss}. A comprehensive list of all the tools considered throughout the project is provided in Table \ref{tab:tools}.
+The entirety of our code is accessible on GitHub\textcolor{red}{, available here}. However, it requires further refinement and documentation.
+Additionally, all the papers and documents referenced in this report are freely accessible without the need for platforms like Sci-Hub.
 
-\subsection{To delete}
-
-\subsubsection{Task description}
-Past research or work in the field.
-Define precisely what are the questions, objectives and tasks you were 
-given. Connect them with a scientific or technical context.
-What are the approaches generally used to solve the problem? 
-(Reference them)
-What are the underlying assumptions or hypotheses, if any?
-Question raising.
-What are their limitations? 
-Is there a gap? Which one?
-Purpose of the present research or work and experimental strategy 
-chosen to address your scientific question
-Literature review.
-It is an echo of the points raised in the introduction. You can 
-reference findings and describe the state of the art.
-
-\subsubsection{Key points}
-
-\begin{itemize}
-    \item Past research: how people used to find new protein 
-    structures. Needs a bit of research! \textcolor{red}{HARD}.
-    \item Now you realize that this is super slow \ldots
-    \item Mention the idea behind RFdiffusion. Maybe talk a bit about 
-    the lab's previous work (in one to two sentences).
-    \item Talk about Diffusion models. ChatGPT, DALLE-E \ldots etc.
-    \item Talk about MPNNs. What is it used for? How is it a better 
-    alternative to CNNs?
-    \item Now say that we hoped to test this new tool on a real 
-    problem. And that's why we chose to work on the iGEM project. It's 
-    new so not a lot of research has been done on it.
-    \item Mention other available tools like the one from EPFL from the 
-    lab you tried to apply to once. Also the new Atom Diffusion model
-    \item One big limitation is that since there's not a lot of research 
-    done on this topic, there are not a lot of examples available. So we 
-    had to come up with our own protocols, NOTE: you can show search 
-    terms on academic search engines for words like "\emph{de novo} protein 
-    design" and "protein structure prediction" and show that there are 
-    not a lot of results.
-    \item Now talk that we had limited resources so we had to develop 
-    tools that can run in parallel, and run on specific environments like 
-    Google Colab and that can be run on a GPU and things like that.
-    \item \textcolor{red}{what about HDOCK, or the Codon Optimization 
-    tool?} 
-\end{itemize}
+\begin{table}[ht]
+    \centering
+    \caption{List of Open-Source Tools Used in the Project}
+    \label{tab:tools}
+    \begin{tabular}{p{2.5cm}|p{14cm}}
+    \toprule
+    Tool name & Links \\
+    \midrule
+    RFDiffusion & GitHub Repository: \\
+     & \url{https://github.com/RosettaCommons/RFdiffusion} \\
+     & Google Colab Notebook: \\
+     & \url{https://colab.research.google.com/github/sokrypton/ColabDesign/blob/main/rf/examples/diffusion.ipynb} \\
+    HDOCK & Website: \url{http://hdock.phys.hust.edu.cn/} \\
+    AlphaFold2 & GitHub Repository: \\
+     & \url{https://github.com/google-deepmind/alphafold} \\
+     & Google Colab Notebook: \\
+     & \url{https://colab.research.google.com/github/deepmind/alphafold/blob/main/notebooks/AlphaFold.ipynb} \\
+    RosettaSurf & GitHub Repository: \\
+     & \url{https://github.com/LPDI-EPFL/RosettaSurf} \\
+    ESMFold & GitHub Repository: \\
+     & \url{https://github.com/facebookresearch/esm} \\
+     & Google Colab Notebook: \\
+     & \url{https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/ESMFold.ipynb} \\
+    RoseTTAFold & GitHub Repository: \\
+     & \url{https://github.com/RosettaCommons/RoseTTAFold} \\
+     & Google Colab Notebook: \\
+     & \url{https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/RoseTTAFold.ipynb} \\
+    ChimeraX & Website: URL needed \\
+    BioPython & Website: URL needed \\
+    \bottomrule
+    \end{tabular}
+\end{table}
 
 
 % Methods
@@ -248,20 +244,9 @@ reference findings and describe the state of the art.
 
 \subsection{Design Considerations}
 
-The application of RFdiffusion was facilitated by the Google Colab 
-adaptation developed by Sergey Ovchinnikov \cite{ovchinnikov2023colab}, 
-allowing seamless utilization of RFdiffusion and Google's GPUs. 
-However, due to its inherent lack of accuracy, multiple sequences 
-needed testing to identify those binding to the targets of interest. 
-This computationally intensive process, with time complexity 
-proportional to $O(N^2)$ (where $N$ is the number of residues), 
-prompted us to reduce the target protein size. This reduction, 
-recommended by RFdiffusion developers \cite{rfdiffusion_github}, 
-required defining a tradeoff between the number of sequences and their 
-length, as there was no clear guidance on the optimal binder size for 
-this relatively new tool.
+The utilization of RFdiffusion was made possible through the Google Colab adaptation developed by Sergey Ovchinnikov \cite{ovchinnikov2023colab}, facilitating seamless access to RFdiffusion and Google's GPUs. However, owing to its inherent lack of accuracy, multiple sequences required testing to identify those binding to the targets of interest. This computationally intensive process, with a time complexity proportional to the square of the number of residues $O(N^2)$ (where $N$ is the number of residues), prompted the need to reduce the target protein size, as recommended by RFdiffusion developers \cite{rfdiffusion_github}. We also had to limit the length of the produced sequences. To navigate this, a tradeoff was defined between the number of sequences and their length. Given the absence of clear guidance on the optimal binder size for this relatively new tool, we experimented with multiple lengths and selected what we considered the most suitable.
 
-In an effort to maximize efficiency with limited lab resources, an 
+To maximize efficiency with limited lab resources, an 
 orthogonal approach was employed. In-silico docking experiments using 
 the HDOCK binding algorithm were conducted to filter and prioritize 
 sequences more likely to bind to the target of interest.
@@ -292,7 +277,7 @@ The pipeline outputs a list of sequences with higher likelihoods of binding to t
 
 Commencing with the delineation of a hotspot, we define it as a specific residue (amino acid) on the target protein that we aim for the designed binders to effectively bind to. Despite the potential ambiguity of this term, our adoption of RFdiffusion's terminology guides our terminology usage.
 
-Our strategy for selecting potential binding sites involved both manual inspection and the identification of hotspots based on specific rules of thumb. We developed these rules of thumb through a combination of manual exploration and adjustments based on RFdiffusion guidance.
+Our strategy for selecting potential binding sites involved manual inspection to identify potential hotspots based on specific rules of thumb. We developed these rules of thumb through a combination of manual exploration and adjustments based on RFdiffusion guidance \cite{rfdiffusion_github} and previous studies in this field \cite{chen2013protein}.
 
 Alexis Courbet, a former member of the Baker lab, significantly contributed to shaping our guiding principles for binder design. Leveraging his expertise, we established a set of criteria to guide our manual inspection process, focusing on identifying residues that align with the following:
 
@@ -303,52 +288,40 @@ Alexis Courbet, a former member of the Baker lab, significantly contributed to s
 \end{itemize}
 
 
-In accordance with the established criteria, we opted for Human Papillomavirus (HPV) as one of our targets due to its nature as a naked virus (non-enveloped) /cite{morshed2014human}. At the initial stages of our exploration with RFdiffusion, the potential interference of glycoproteins with our study was uncertain. To address safety concerns, our strategy involved expressing the proteins in an alternative vector rather than utilizing the actual virus.
+% \begin{lstlisting}[language=Python]
+%     print("Hello, world!")
+%     for i in range(10):
+%         print(i)
+% \end{lstlisting}
+    
 
-The selection of Bacteriophage T4 was motivated by its availability in our laboratory and the associated safety considerations. Unlike HPV, using the virus in its native form was feasible and, with HPV proteins, presented a robust proof of concept for our study.
+Following the established criteria, we opted for Human Papillomavirus (HPV) as one of our targets due to its nature as a naked virus (non-enveloped) \cite{morshed2014human}. At the initial stages of our exploration of RFdiffusion, the potential interference of glycoproteins with our study was uncertain. To address safety concerns, our strategy involved expressing the proteins in an alternative vector rather than utilizing the actual virus.
 
-To select hotspots, ChimeraX functionalities such as "hydrophobic" and "electrostatic" were utilized, generating color-coded surfaces to visualize hydrophobic to hydrophilic and negative to positive surfaces on the protein structure. Ultimately, ChimeraX proved to be a valuable open-source tool for implementing our guidelines, enabling the effective identification of essential hotspots.
+We also decided to use Bacteriophage T4 motivated by its availability in our laboratory and the associated safety considerations. Unlike HPV, using the virus in its native form was feasible and, with HPV proteins, presented a robust proof of concept for our study.
+
+To identify hotspots, we employed ChimeraX functionalities such as "hydrophobic" and "electrostatic" to produce an informative depiction of protein surfaces. Figure \ref{fig:protein_inspection_results} illustrates the "hydrophobic" surface of the T4 bacteriophage capsid (Protein Data Bank id: 7vs5). The selected residues (hm19, hm22, hk48, hk49, and fh281) are located within a hydrophobic groove exposed to the solvent, aligning with our design rules.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{Figures/hydrophobic_view.png}
+\caption{Hydrophobic surface of the T4 bacteriophage capsid, generated using ChimeraX. The hydrophobic surface is colored in yellow, while the hydrophilic surface is colored in blue. The selected residues are where we successfully designed two binders.}
+\label{fig:protein_inspection_results}
+\end{figure}
+
 
 \subsection{Running RFdiffusion}
 
-Due to the substantial size of capsids, which are intricate protein assemblies, computational limitations necessitated the pruning of structures around identified hotspots to prevent out-of-memory errors. To streamline this process and minimize potential errors and biases introduced by manual steps, a custom code was developed using the BioPython library. The code automates the reduction of structure based on predefined criteria, ensuring a more efficient and standardized approach.
+To reduce the target protein size, I developed a simple Python script, using Biopython library \cite{biopython}. The script takes as input a PDB file (or id), a list of hotspots and a radius (in Angstroms). It then outputs a new PDB file containing only the residues within the specified radius of the hotspots. The script is available on GitHub \textcolor{red}{here}. We wanted automate this step, in order to minimize the manual steps and the potential errors and biases introduced.
 
-These reduced sturcte are then manually used as input for RFdiffusion. To comply with legal restrictions, local code execution or connecting a local session to Google Colab is prohibited, as outlined in the \href{https://research.google.com/colaboratory/faq.html#disallowed-activities}{Google Colab disallowed activities}. Therefore, the results of the structure-reducing scripts were manually uploaded to the Google Colab Virtual Machine. If access to a robust local GPU were available, further automation of the entire process, after choosing the hotspots. 
+These reduced structures are then manually used as input for RFdiffusion. To comply with legal restrictions, local code execution or connecting a local session to Google Colab is prohibited, as outlined in the \href{https://research.google.com/colaboratory/faq.html#disallowed-activities}{Google Colab disallowed activities}. Therefore, the results of the structure-reducing scripts were manually uploaded to the Google Colab Virtual Machine. Thankfully this step would not produce human biases, but it caused a significant delay in the process.
 
 \subsection{HDOCK: an orthogonal validation approach}
 
 After completing the previous steps, the number of generated sequences reached the order of thousands. However, the practical constraints of our team's budget made it unfeasible to test all these sequences experimentally. To prioritize potential designs and narrow down the candidates for experimental validation, we sought an orthogonal approach for assessment.
 
-Through extensive research, we chose to employ HDOCK, an \emph{in-silico} binding tool known for its consistent performance in the CASP-CAPRI \cite{casp-capri} competition over the years. HDOCK utilizes a fast rigid-body docking algorithm, which can be parallelized on a server to enhance throughput, enabling the scanning of numerous potential designs within a reasonable timeframe.
+Through extensive research, we chose to employ HDOCK, an \emph{in-silico} binding tool \cite{yan2017hdock} known for its consistent performance in the CASP-CAPRI \cite{casp-capri} competition over the years. HDOCK utilizes a Fast-Fourier-Transformation-based docking algorithm, making it a fast rigid body docking tool. Additionally, HDOCK can be used locally, so I developed a Python script to parallelize the process and get all the needed statistics. The script utilizes the "multiprocessing" Python built-in module \cite{python_multiprocessing}. The code is available on GitHub \textcolor{red}{here}.
 
-We applied an \emph{in-silico} filtration steps using a customized code that I develpoed to parallelize the process and get all the needed statistics. Only the sequences deemed most likely to exhibit binding were retained for further experimental validation.
-
-\subsection{To delete}
-
-\subsubsection{Task description}
-(1-2 pages with figures if relevant): (Methods is a section valid for any internship, not only research-oriented, experimental or theoretical. You did something according to a method, which is what you should understand and present here.)
-Present in detail the tools, techniques and methods you have used and why (giving a list of library's or equipment's name is not a presentation). 
-Describe the scientific and/ or technical background with clear explanations, references, equations and/ or schematics or pictures. 
-
-\subsubsection{Key points}
-
-\begin{itemize}
-    \item This section should be prttey consise in terms of word, but 
-    full of screenshots about the used tools.
-    \item Here I can totally start pointing out to the graph where I 
-    have the entire pipline.
-    \item Talk about RFdiffusion. How it works, talk about Sergey's 
-    Google Colab adaptation.
-    \item Talk BRIEFLY about ChimeraX. and how you used it to find the 
-    targets of interest.
-    \item Talk about different docking tools. Also the two contests for 
-    docking.
-    \item Mention how HDOCK scored pretty good in these ones, and also 
-    how is it free to download.
-    \item Talk about parrallel computing, and talk about parrallel 
-    computing using Python. and how you used this to further speed up 
-    the process of docking.
-\end{itemize}
+By the end of this step, only the sequences deemed most likely to exhibit binding were retained for further experimental validation.
 
 
 \section{Results}
@@ -356,153 +329,67 @@ Describe the scientific and/ or technical background with clear explanations, re
 After manually inspecting the following proteins:
 
 \begin{itemize}
-    \item HPV major capsid protein (PDBID 7kzf)
-    \item Bacteriophage T4 capsid (PDBID 7vs5)
-    \item Bacteriophage T4 Long-Tail (PDBID 2xgf)
-    \item GFP protein (PDBID 5b61)
+    \item HPV major capsid protein (Protein Data Bank id: 7kzf)
+    \item Bacteriophage T4 capsid (Protein Data Bank id: 7vs5)
+    \item Bacteriophage T4 Long-Tail (Protein Data Bank id: 2xgf)
+    \item GFP protein (Protein Data Bank id: 5b61)
 \end{itemize}
 
-I picked around 50 different sets of hotspots. Each set contains 2 to 4 hotspots. \textcolor{red}{Point to the table}. Each set of hotsopt will be called a "run" from now on.
+I picked around 50 different sets of hotspots. Each set contains 2 to 4 hotspots. Each set of hotspots will be called a "run" from now on. A full table can be found in the attached table "Supplementary Data/Manual choices for hotsopts.csv" 
 
-Each run can produce $S*Q$ sequences, where $S$ is the number of structure backbones that RFdiffusion algorithm should predict in the first step, and $Q$ is the number of sequences generated per structure backbone using the NPMM step.
-generate
+Each run can produce $S*Q$ sequences, where $S$ is the number of structure backbones that the RFdiffusion algorithm should predict in the first step, and $Q$ is the number of sequences generated per structure backbone using the NPMM step.
 
-\subsection{To delete}
+By the end of the project, I have generated around 1500 sequences. Which are not feasible to test experimentally. So I had to filter them out using HDOCK.
 
-\subsubsection{Task description}
-(2-3 pages with figures):
-Precisely describe the results of your work with clear explanations of 
-the analysis, schematics and figures.
-Describe what worked, what didn't and why.
+\subsection{HDOCK results}
 
-\subsubsection{Key points}
+\subsubsection{Introduction}
 
+Upon completing the preceding steps, we encountered a substantial pool of sequences, numbering in the thousands. The prospect of experimental testing for all these sequences posed a significant resource and time challenge.
+
+To streamline and curtail the number of sequences for experimental validation, we sought an in-silico binding assay. A comprehensive analysis of results from the Critical Assessment of Protein Structure Prediction (CASP) and Critical Assessment of Prediction of Interactions (CAPRI) collaborations, particularly the CASP-CAPRI competitions, proved pivotal. CASP and CAPRI orchestrate these competitions, engaging participants to predict structures of protein-protein complexes. Participants submit their predictions for evaluation, and rankings are made publicly accessible.
+
+Following an exhaustive examination of the top-ranking servers in the CASP-CAPRI competition, our selection converged on HDOCK, driven by its commendable attributes:
 
 \begin{itemize}
-    \item Here there's two catches:
-    \begin{itemize}
-        \item I have generated data for two targets but only one was 
-        tested.
-        \item I have really results that can be described totally in 
-        few sentecs.
-    \end{itemize}
-    \item Talk about how many structures you generated.
-    \item Talk about the tendecy of short ones to have repeated 
-    sequences. Come up with some metrics to measure this.
-    \item just come up with some metrics to fill the page.
-    \item Talk about the docking results. How good, bad they were.
-    \item Talk about the i\_PAE score, why you didn't use it from the 
-    begining?
-    \item Show some nice graphs about the docking results. with color 
-    coding everhting, and the ones picked.
-    \item Ask Louis, Momo, and/or Avi for help on the wet lab part (it 
-    should be a small sub-section).
-    \item There's a side hustles, a result should be visually 
-    appealing. So talk how I used ChimeraX to generate some cool 
-    animations. Talk about other new tools in development like the one 
-    I found during a lab meeting at Jussieu (I don't if the name is 
-    correct). 
+    \item \textbf{Efficiency:} HDOCK employs a high-speed rigid-body docking algorithm grounded in Fast Fourier Transform (FFT).
+    \item \textbf{Local Executability and Parallelizability:} In contrast to many web-hosted tools, HDOCK can be locally downloaded and executed. Furthermore, the docking process can be parallelized using the multiprocessing Python library.
+    \item \textbf{Proven Performance:} HDOCK achieved preeminence by securing the 1st rank in CASP-CAPRI11 and has continued to play a pivotal role in subsequent competitions.
 \end{itemize}
 
-\subsubsection{Text}
+The selection process involved choosing the best-scoring sequences while endeavoring to include sequences from almost all the runs. This strategic approach ensured a comprehensive representation for subsequent experimental validation.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+\subsection{Experimental Validation through Pull-Down Assays}
 
-% Discussion
+To experimentally confirm the binding capabilities of the generated sequences, pull-down assays were employed. Among the 30 tested sequences, three demonstrated positive binding to the T4 bacteriophage, affirming the effectiveness of the computational design approach in identifying potential binding sequences. In Figure \ref{fig:universal_score}, the universal scores of the generated sequences are depicted, with those exhibiting positive results highlighted in green.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Figures/universal_score_against_Sequence_Global_ID.png}
+    \caption{Graph showing the universal score against Sequence Global ID.}
+    \label{fig:universal_score}
+\end{figure}
+
 \section{Discussion}
 
-\subsection{To delete}
+The success of our computational design pipeline, utilizing open-source tools and following a theoretically fully automated workflow, marks a significant achievement. The integration of RFdiffusion, HDOCK, and ChimeraX enabled the generation and prioritization of protein sequences with potential binding affinity.
 
-\subsubsection{Task description}
-(1 page): 
-Review findings.
-Discuss outcomes.
-Do your results make sense ? 
-Evaluate them
-Do they provide elements towards solving your problem ? Which ones ?
-Do they open up new questions (scientific or technical).
+Despite the advancements, achieving complete automation faces two challenges. Firstly, the reliance on a local GPU for RFdiffusion execution would enhance efficiency, reducing the manual steps involved in uploading results to Google Colab. Secondly, the identification of hotspots using manual rules of thumb remains a semi-manual step, requiring expertise in differential geometry.
 
-\subsubsection{Key points}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-\subsubsection{Text}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-% Conclusion
-\section{Conclusion}
-
-\subsection{To delete}
-
-\subsubsection{Task description}
-($\frac{1}{2}$ to 1 page maximum):
-Conclude regarding the missions and tasks you were given and the 
-results you obtained . Mention if they will be used by your team. 
-What are the limitations of your results ?
-What are the future directions (questions, implementation…) ? 
-
-\subsubsection{Key points}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-\subsubsection{Text}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+However, the positive experimental results obtained from pull-down assays provide a robust proof of concept. The success in identifying binding sequences, especially with the constraints and limitations faced by the team, demonstrates the feasibility and potential scalability of the approach. Scaling up the pipeline, generating longer sequences, and testing them will be the logical next steps, guided by the promising outcomes observed in this initial phase.
 
 % Acknowledgments
-\section{Acknowledgments}
+\section*{Acknowledgments}
 
-\subsection{To delete}
+We extend our sincere gratitude to the Minc's Lab team and the Institute Jacques Monod for their generosity in providing access to their server, which played a crucial role in the execution of computational tasks for this project.
 
-\subsubsection{Task description}
-Also conclude regarding your work at the institution, your integration 
-to the team, what you brought, what you have learned, what you need to 
-improve.
+Special thanks to Alex and Sergey for their invaluable assistance during the protocol design phase. Their expertise and guidance significantly contributed to the development of an effective and robust computational pipeline.
 
-\subsubsection{Key points}
+We also express our appreciation to the entire Life Sciences Institute (LPI) team for their continuous scientific and emotional support throughout this endeavor. The collaborative spirit within the team fostered an environment conducive to exploration and innovation.
 
-\begin{itemize}
-    \item My colleages.
-    \item Minc lab.
-    \item two people whom I emailed for help.
-    \item Others.
-\end{itemize}
-
-\subsubsection{Text}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+\textcolor{red}{IFB}
 
 % References
 \printbibliography
-
-% Annexes
-\section{Annexes}
-
-\subsection{To delete}
-
-\subsubsection{Task description}
-
-(3 pages maximum, if needed)
-Add experimental details, code, algorithms, figures, pictures and any 
-additional information we need to understand your work. Links welcome.
-Organize them freely but clearly.
-
-\subsubsection{Key points}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-\subsubsection{Text}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-\section{What else?}
-
-Data. 
-Why do you need them ? How and when were they collected, stored, accessed, selected and sorted ? Describe the data you used (information they contain, length, format, database,...) . Describe their limitations. Precise the legal and ethical context.
-
-Implementation. 
-Describe the operation pipelines with clear explanations and schematics. What is your detailed contribution here (experiment, code, algorithm, operation…) ? What have you implemented (and modified) ? How have you implemented it ? 
-
 
 \end{document}

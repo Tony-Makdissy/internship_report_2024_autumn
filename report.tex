@@ -125,7 +125,7 @@
 % Abstract
 \begin{abstract}
 
-    The field of \emph{de novo} protein design has witnessed significant advancements, evolving from manual crafting to sophisticated computational methodologies. This report details an exploration into de novo protein design, specifically focusing on the computational pipeline developed for generating potential protein binders. Leveraging tools like RFdiffusion, HDOCK, and ChimeraX, a theoretically automated workflow was employed to inspect target proteins, identify hotspots, and validate sequences through pull-down assays. Despite challenges in automating hotspot identification and GPU-dependent execution, the pipeline demonstrated promising results. Three sequences exhibited positive binding to the T4 bacteriophage, showcasing the feasibility of this approach. The success of this proof-of-concept provides a foundation for scaling up the design and exploring more complex protein structures.
+    The field of \emph{de novo} protein design has witnessed significant advancements, evolving from manual crafting to sophisticated computational methodologies. This report details an exploration into de novo protein design, specifically focusing on the computational pipeline developed for generating potential protein binders. Leveraging tools like RFdiffusion, HDOCK, and ChimeraX. A theoretically automated workflow was employed to inspect target proteins, identify hotspots, and validate sequences through pull-down assays. Despite challenges in automating hotspot identification and GPU-dependent execution, the pipeline demonstrated promising results. Three sequences exhibited positive binding to the T4 bacteriophage, showcasing the feasibility of this approach. The success of this proof-of-concept provides a foundation for scaling up the design and exploring more complex protein structures.
     
 \end{abstract}
 
@@ -181,8 +181,8 @@ special? Can we do that?" \cite{hecht2018natural}.
 
 \subsection{History of \emph{de novo} protein design}
 
-According to Korendovych and DeGrado \cite{korendovych2020novo}, de 
-novo protein design has evolved through several stages.
+According to Korendovych and DeGrado \cite{korendovych2020novo}, \emph{de novo} 
+protein design has evolved through several stages.
 In the nascent days of \emph{de novo} protein design, researchers manually 
 crafted protein structures. A landmark achievement occurred in 1983 
 when Moser et al. successfully designed a DDT binder through manual 
@@ -269,8 +269,8 @@ along with clean and well-documented code on \href{https://github.com/RosettaCom
 \subsection{Free and Open-Source Software (FOSS)}
 
 It is noteworthy that every tool utilized in this project adheres to the principles of open-source and/or free usage. Our team advocates for the openness and accessibility of scientific endeavors to a broader audience. We exclusively employed tools that align with the tenets outlined in "What is Free Software?" \cite{gun_foss}. A comprehensive list of all the tools considered throughout the project is provided in Table \ref{tab:tools}.
-The entirety of our code is accessible on GitHub (\url{https://github.com/Tony-Makdissy/iGEM_2023}). However, it requires further refinement and documentation.
-Additionally, all the papers and documents referenced in this report are freely accessible without the need for platforms like Sci-Hub. The references can be found in the folder "Supplementary Data/References" which I will append to the final report.
+The entirety of our code is accessible on GitHub (\url{https://github.com/Tony-Makdissy/iGEM_2023}).
+Additionally, all the papers referenced in this report are free to access without a charge.
 
 % Methods
 \section{Methods}
@@ -301,7 +301,7 @@ The pipeline outputs a list of sequences with higher likelihoods of binding to t
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{Figures/iGEM_project_general_organization_graph.pdf}
+    \includegraphics[width=\textwidth]{Supplementary Data/Figures/iGEM_project_general_organization_graph.pdf}
     \caption{General organization graph of the iGEM project.}
     \label{fig:organization_graph}
 \end{figure}
@@ -329,7 +329,7 @@ To identify hotspots, we employed ChimeraX functionalities such as "hydrophobic"
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=\textwidth]{Figures/hydrophobic_view.png}
+\includegraphics[width=\textwidth]{Supplementary Data/Figures/hydrophobic_view.png}
 \caption{Hydrophobic surface of the T4 bacteriophage capsid, generated using ChimeraX. The hydrophobic surface is colored in yellow, while the hydrophilic surface is colored in blue. The selected residues are where we successfully designed two binders.}
 \label{fig:protein_inspection_results}
 \end{figure}
@@ -337,7 +337,7 @@ To identify hotspots, we employed ChimeraX functionalities such as "hydrophobic"
 
 \subsection{Running RFdiffusion}
 
-To reduce the target protein size, I developed a simple Python script, using the Biopython library \cite{biopython}. The script takes as input a PDB file (or id), a list of hotspots and a radius (in Angstroms). It then outputs a new PDB file containing only the residues within the specified radius of the hotspots. The script is available on the project's GitHub repository. We wanted to automate this step, in order to minimize the manual steps and the potential errors and biases introduced.
+To reduce the target protein size, I developed a simple Python script, using the Biopython library \cite{biopython}. The script takes as input a PDB file (or id), a list of hotspots and a radius (in Angstroms). It then outputs a new PDB file containing only the residues within the specified radius of the hotspots. The script is available on the project's GitHub repository (\url{https://github.com/Tony-Makdissy/iGEM_2023}). We wanted to automate this step, in order to minimize the manual steps and the potential errors and biases introduced.
 
 These reduced structures are then manually used as input for RFdiffusion. To comply with legal restrictions, local code execution or connecting a local session to Google Colab is prohibited, as outlined in the \href{https://research.google.com/colaboratory/faq.html#disallowed-activities}{Google Colab disallowed activities}. Therefore, the results of the structure-reducing scripts were manually uploaded to the Google Colab Virtual Machine. Thankfully this step would not produce human biases, but it caused a significant delay in the process.
 
@@ -363,20 +363,20 @@ After manually inspecting four proteins:
     \item GFP protein (PDB ID: 5b61)
 \end{itemize}
 
-I selected approximately 50 different sets of hotspots, each containing 2 to 6 hotspots, termed as a "run." Refer to the Supplementary Data for the complete table of manual hotspot choices can be found in the folder "Supplementary Data" which I will append to the final report under the name "Supplementary Data/Manual choices for hotsopts.csv"
+I selected approximately 50 different sets of hotspots, each containing 2 to 6 hotspots, termed as a "run." Refer to the Supplementary Data for the complete table of manual hotspot choices can be found in the folder "Supplementary Data" under the name "Manual choices for hotsopts.csv"
 
 In addition to specifying parameters such as hotspots and the number of sequences, I also uploaded the reduced structures to the Google Colab Virtual Machine (Figure \ref{fig:comparison}).
 
 \begin{figure}[ht]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{Figures/Full_image.png}
+        \includegraphics[width=\textwidth]{Supplementary Data/Figures/Full_image.png}
         \caption{Original structure image.}
         \label{fig:full_image}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{Figures/zoom_4.png}
+        \includegraphics[width=\textwidth]{Supplementary Data/Figures/zoom_4.png}
         \caption{Structure image zoomed four times.}
         \label{fig:zoom_4}
     \end{subfigure}
@@ -413,7 +413,7 @@ To confirm binding capabilities, pull-down assays were performed on 60 generated
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.9\textwidth]{Figures/universal_score_against_Sequence_Global_ID.png}
+    \includegraphics[width=0.9\textwidth]{Supplementary Data/Figures/universal_score_against_Sequence_Global_ID.png}
     \caption{Universal scores against Sequence ID (as used in our tables). Red dots represent all tested sequences, while green dots highlight the three sequences exhibiting positive binding to T4 bacteriophage.}
     \label{fig:universal_score}
 \end{figure}
@@ -456,6 +456,16 @@ We extend our gratitude to Minc's Lab, Institute Jacques Monod, and IFB - Instit
 
 Special thanks to Alex and Sergey for invaluable assistance in protocol design, and to the Life Sciences Institute (LPI) team for continuous support, and fostering innovation.
 
+
+\section*{Data Availability}
+
+As the team is planning to publish the results of this project in a peer-reviewed journal, the data is not available yet. However, the code is available on GitHub (\url{https://github.com/Tony-Makdissy/iGEM_2023}). Along with the successfully validated sequences (Table \ref{tab:sequences}) and the list of run's parameters (see Supplementary Data).
+
+A full list of all the runs' sequences with their corresponding statistics and experimental data will be available after the publication of the paper.
+
+For this report, you can access the \LaTeX\ code used to create it following the link \url{https://github.com/Tony-Makdissy/internship_report_2024_autumn} which contains all the code and data used to create this report.
+
+Supplementary Data will be provided as a separate file along with the report and can be accessed on the GitHub Repository.
 
 % References
 \printbibliography

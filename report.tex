@@ -17,6 +17,11 @@
 \usepackage{xcolor}
 \usepackage{booktabs}
 \usepackage{listings}
+\usepackage{subcaption} % Add this line to import the subcaption package
+\usepackage{wasysym}
+\usepackage{seqsplit}
+
+
 
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -111,7 +116,7 @@
     \vfill
 
     % Bottom of the page
-    {\large Date: \today\par}
+    {\large July 2023 - November 2023\par}
 \end{titlepage}
 
 \tableofcontents
@@ -120,9 +125,9 @@
 % Abstract
 \begin{abstract}
 
-    \emph{De novo} protein design, the art of creating functional proteins from scratch, has evolved over the years, transitioning from manual structure crafting to sophisticated computational approaches. This report details our exploration in \emph{de novo} protein design, specifically focusing on the computational design pipeline developed to generate potential protein binders for immobilizing sexually transmitted infection (STI) proteins within a gel mesh network. Leveraging tools like RFdiffusion, HDOCK, and ChimeraX, we employed a theoretically automated workflow to inspect target proteins, select hotspots, and validate sequences through pull-down assays. Despite facing challenges in fully automating hotspot identification and GPU-dependent execution, our pipeline demonstrated promising results, with three sequences exhibiting positive binding to the T4 bacteriophage. The success of this proof-of-concept provides a foundation for scaling up the approach and exploring more complex protein designs.
+    The field of \emph{de novo} protein design has witnessed significant advancements, evolving from manual crafting to sophisticated computational methodologies. This report details an exploration into de novo protein design, specifically focusing on the computational pipeline developed for generating potential protein binders. Leveraging tools like RFdiffusion, HDOCK, and ChimeraX, a theoretically automated workflow was employed to inspect target proteins, identify hotspots, and validate sequences through pull-down assays. Despite challenges in automating hotspot identification and GPU-dependent execution, the pipeline demonstrated promising results. Three sequences exhibited positive binding to the T4 bacteriophage, showcasing the feasibility of this approach. The success of this proof-of-concept provides a foundation for scaling up the design and exploring more complex protein structures.
     
-    \end{abstract}
+\end{abstract}
 
 % General Context
 \section{General Context}
@@ -154,6 +159,8 @@ sustainable development goals:
     \item SDG8 (Decent Work and Economic Growth)
     \item SDG12 (Responsible Consumption and Production)
 \end{itemize}
+
+All while trying to follow the Free and Open-Source Software (FOSS) philosophy \cite{gun_foss} by using free and open-source tools and making sure that all our codes and results are available via the iGEM website.
 
 % Team composition
 Paris-Bettencourt team is hosted by Learning Planet Institute (LPI),
@@ -254,8 +261,8 @@ To achieve this goal, we used RFdiffusion to generate protein
 sequences. We made this decision because of the impressive history of
 Baker lab (creating TOP7. RoseTTAFold, ProteinMPNN, the design
 of self-assembly mechanically coupled axle-rotor proteins, and many more) \cite{bakerlab}.
-Also we found a lot of resources and tutorials on how to use RFdiffusion (
-\href{https://www.youtube.com/watch?v=wIHwHDt2NoI}{online seminars about RFdiffusion} and 
+Also, we found a lot of resources and tutorials on how to use RFdiffusion 
+(\href{https://www.youtube.com/watch?v=wIHwHDt2NoI}{online seminars about RFdiffusion} and 
 \href{https://youtu.be/aVQQuoToTJA?si=PnQvJluY3ZPHo4TO}{ProteinMPNN}).
 along with clean and well-documented code on \href{https://github.com/RosettaCommons/RFdiffusion}{GitHub}.
 
@@ -294,9 +301,9 @@ The pipeline outputs a list of sequences with higher likelihoods of binding to t
 
 \begin{figure}[ht]
     \centering
-    \label{fig:organization_graph}
     \includegraphics[width=\textwidth]{Figures/iGEM_project_general_organization_graph.pdf}
     \caption{General organization graph of the iGEM project.}
+    \label{fig:organization_graph}
 \end{figure}
 
 \subsection{Target Protein Inspection and Hotspot Selection}
@@ -314,13 +321,6 @@ Alexis Courbet, a former member of the Baker lab, significantly contributed to s
 \end{itemize}
 
 
-% \begin{lstlisting}[language=Python]
-%     print("Hello, world!")
-%     for i in range(10):
-%         print(i)
-% \end{lstlisting}
-    
-
 Following the established criteria, we opted for Human Papillomavirus (HPV) as one of our targets due to its nature as a naked virus (non-enveloped) \cite{morshed2014human}. At the initial stages of our exploration of RFdiffusion, the potential interference of glycoproteins with our study was uncertain. To address safety concerns, our strategy involved expressing the proteins in an alternative vector rather than utilizing the actual virus.
 
 We also decided to use Bacteriophage T4 motivated by its availability in our laboratory and the associated safety considerations. Unlike HPV, using the virus in its native form was feasible and, with HPV proteins, presented a robust proof of concept for our study.
@@ -337,7 +337,7 @@ To identify hotspots, we employed ChimeraX functionalities such as "hydrophobic"
 
 \subsection{Running RFdiffusion}
 
-To reduce the target protein size, I developed a simple Python script, using Biopython library \cite{biopython}. The script takes as input a PDB file (or id), a list of hotspots and a radius (in Angstroms). It then outputs a new PDB file containing only the residues within the specified radius of the hotspots. The script is available on the project's GitHub repository. We wanted to automate this step, in order to minimize the manual steps and the potential errors and biases introduced.
+To reduce the target protein size, I developed a simple Python script, using the Biopython library \cite{biopython}. The script takes as input a PDB file (or id), a list of hotspots and a radius (in Angstroms). It then outputs a new PDB file containing only the residues within the specified radius of the hotspots. The script is available on the project's GitHub repository. We wanted to automate this step, in order to minimize the manual steps and the potential errors and biases introduced.
 
 These reduced structures are then manually used as input for RFdiffusion. To comply with legal restrictions, local code execution or connecting a local session to Google Colab is prohibited, as outlined in the \href{https://research.google.com/colaboratory/faq.html#disallowed-activities}{Google Colab disallowed activities}. Therefore, the results of the structure-reducing scripts were manually uploaded to the Google Colab Virtual Machine. Thankfully this step would not produce human biases, but it caused a significant delay in the process.
 
@@ -352,6 +352,8 @@ By the end of this step, only the sequences deemed most likely to exhibit bindin
 
 \section{Results}
 
+\subsection{RFdiffusion Results}
+
 After manually inspecting four proteins:
 
 \begin{itemize}
@@ -361,15 +363,34 @@ After manually inspecting four proteins:
     \item GFP protein (PDB ID: 5b61)
 \end{itemize}
 
-I selected approximately 50 different sets of hotspots, each containing 2 to 6 hotspots, termed as a "run." Refer to the Supplementary Data for the complete table of manual hotspot choices can be found in the folder "Supplementary Data" which I will append to the final report under the name "Supplementary Data/Manual choices for hotsopts.csv" (an Excel file (.xlsx) or a link to google sheet might be visually better but Comma Speretaed Values (.csv) can be produced/read using many open source editors). 
+I selected approximately 50 different sets of hotspots, each containing 2 to 6 hotspots, termed as a "run." Refer to the Supplementary Data for the complete table of manual hotspot choices can be found in the folder "Supplementary Data" which I will append to the final report under the name "Supplementary Data/Manual choices for hotsopts.csv"
+
+In addition to specifying parameters such as hotspots and the number of sequences, I also uploaded the reduced structures to the Google Colab Virtual Machine (Figure \ref{fig:comparison}).
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{Figures/Full_image.png}
+        \caption{Original structure image.}
+        \label{fig:full_image}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{Figures/zoom_4.png}
+        \caption{Structure image zoomed four times.}
+        \label{fig:zoom_4}
+    \end{subfigure}
+    \caption{Comparison of the original image and a zoomed image of the structure. The full structure (PDBID 7vs5) has 102,943 residues, while the reduced structure (in orange) has only 514.}
+    \label{fig:comparison}
+\end{figure}
+
+
 
 Each run can generate $S*Q$ sequences, where $S$ represents the number of structure backbones predicted by the RFdiffusion algorithm in the initial step, and $Q$ is the number of sequences generated per structure backbone using the NPMM step.
 
 By the project's conclusion, around 1500 sequences were generated, posing a challenge for experimental testing. To address this, a filtration step was employed using HDOCK.
 
 \subsection{HDOCK Results}
-
-\subsubsection{Introduction}
 
 Following the sequence generation, we faced a substantial pool of thousands of sequences, necessitating a method to streamline experimental validation. An in-silico binding assay was chosen, drawing insights from the CASP-CAPRI competitions, renowned for assessing protein structure predictions.
 
@@ -381,40 +402,60 @@ After scrutinizing top-ranking servers in the CASP-CAPRI competition, HDOCK emer
     \item \textbf{Proven Performance:} HDOCK secured the 1st rank in CASP-CAPRI11 and continued to excel in subsequent competitions.
 \end{itemize}
 
-The selection criteria aimed at choosing high-scoring sequences while ensuring representation from various runs, enhancing the comprehensiveness of subsequent experimental validation.
+The selection criteria aimed at choosing best-scoring sequences while ensuring representation from various runs (Figure \ref{fig:universal_score}), enhancing the comprehensiveness of subsequent experimental validation.
 
 One limitation of HDOCK is its lack of experimentally calibrated scores. Scores are not comparable between different target proteins, leading us to compare scores only within the same target. The scores themselves lack a universally meaningful interpretation.
 
 
 \subsection{Experimental Validation through Pull-Down Assays}
 
-To experimentally confirm the binding capabilities of the generated sequences, pull-down assays were employed. Among the 30 tested sequences, three demonstrated positive binding to the T4 bacteriophage, affirming the effectiveness of the computational design approach in identifying potential binding sequences. In Figure \ref{fig:universal_score}, the universal scores of the generated sequences are depicted, with those exhibiting positive results highlighted in green.
+To confirm binding capabilities, pull-down assays were performed on 60 generated sequences. Three showed positive binding to T4 bacteriophage (Figure \ref{fig:universal_score}), validating the computational design (see Table \ref{tab:sequences}). 
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/universal_score_against_Sequence_Global_ID.png}
-    \caption{Graph showing the universal score against Sequence Global ID.}
+    \caption{Universal scores against Sequence ID (as used in our tables). Red dots represent all tested sequences, while green dots highlight the three sequences exhibiting positive binding to T4 bacteriophage.}
     \label{fig:universal_score}
 \end{figure}
 
+For infectivity assessment, a pull-down phage retention assay was adapted. His-tagged proteins were incubated with T4 phage, and fractions were collected through an affinity purification column. Phage concentrations were quantified using a plaque assay. This setup, inspired by existing literature, provides insights into the designed protein's impact on viral infectivity.
+
+I did not contribute to this step; credit goes to my friends Avi, Mostafa, and Louis for handling wet lab activities.
+
+\subsection{Further Analysis}
+
+After validating three sequences, a BLAST search yielded no matches with known proteins under default parameters. This supports RFdiffusion's potential for generating novel sequences.
+
+A video demonstrating a hypothetical binding scenario is available in the "Supplementary Data" folder as "Binding\_video.mp4." The binder, designed based on an AlphaFold2 prediction, is expected to bind to the area shown in Figure \ref{fig:protein_inspection_results} (T4 bacteriophage capsid structure from PDB ID 7vs5).
+
+
+\subsection{iGEM Results}
+
+Despite achieving promising results in our project, we faced a setback as we failed to complete the required paperwork within the specified time, ultimately leading to our disqualification \frownie{}. 
+
 \section{Discussion}
 
-The success of our computational design pipeline, utilizing open-source tools and following a theoretically fully automated workflow, marks a significant achievement. The integration of RFdiffusion, HDOCK, and ChimeraX enabled the generation and prioritization of protein sequences with potential binding affinity.
+Our study successfully demonstrates the design and experimental testing of several proteins that do not exist in nature within an unusually short timeframe. This achievement is a testament to the potential of our approach in expanding the repertoire of available proteins.
 
-Despite the advancements, achieving complete automation faces two challenges. Firstly, the reliance on a local GPU for RFdiffusion execution would enhance efficiency, reducing the manual steps involved in uploading results to Google Colab. Secondly, the identification of hotspots using manual rules of thumb remains a semi-manual step, requiring expertise in differential geometry.
+Despite the success, challenges remain in fully automating the process. Computational resources, in theory, could support automation; however, manual inspection remains a necessity. A profound understanding of differential geometry is crucial for defining hydrophobic grooves and other geometric features. This manual intervention represents a current bottleneck in the workflow.
 
-However, the positive experimental results obtained from pull-down assays provide a robust proof of concept. The success in identifying binding sequences, especially with the constraints and limitations faced by the team, demonstrates the feasibility and potential scalability of the approach. Scaling up the pipeline, generating longer sequences, and testing them will be the logical next steps, guided by the promising outcomes observed in this initial phase.
+Our work lays a robust foundation for further research in this field. While the number of positively binding proteins is promising, achieving statistical significance requires more comprehensive studies. The sequences demand further investigation into their true structure and binding kinetics, as these structures were only assayed for binding. Additionally, optimizing the code remains an avenue for future improvements.
 
-% Acknowledgments
+Moreover, it is crucial to acknowledge that the scope of our work extends beyond Lubretict. The protein generation and \emph{in-silico} binding assays are blind to the overall scope. This pipeline holds potential beyond our current application and can be adapted for the generation of binders in diverse contexts.
+
+\emph{De novo} proteins require extra caution in their potential applications, especially regarding their interactions with living organisms, such as humans. The implications of introducing these novel sequences into biological systems necessitate comprehensive studies to understand their safety and efficacy. Additionally, even though a cell can produce a given sequence, the efficiency of production and the ability to fine-tune these sequences remain unknown. Ongoing studies in this field aim to shed light on these aspects, contributing to a more comprehensive understanding of the practical implications of de novo protein design.
+
+\section{Conclusion}
+
+In conclusion, our research not only marks a significant step forward in protein design and testing but also outlines a versatile pipeline with applications that stretch beyond the immediate scope. Collaborative opportunities, practical implications, and the potential for future advancements further underscore the significance of our work in the broader scientific landscape.
+
+
 \section*{Acknowledgments}
 
-We extend our sincere gratitude to the Minc's Lab team and the Institute Jacques Monod for their generosity in providing access to their server, which played a crucial role in the execution of computational tasks for this project.
+We extend our gratitude to Minc's Lab, Institute Jacques Monod, and IFB - Institut Français de Bioinformatique for server access crucial to our computational tasks.
 
-Special thanks to Alex and Sergey for their invaluable assistance during the protocol design phase. Their expertise and guidance significantly contributed to the development of an effective and robust computational pipeline.
+Special thanks to Alex and Sergey for invaluable assistance in protocol design, and to the Life Sciences Institute (LPI) team for continuous support, and fostering innovation.
 
-We also express our appreciation to the entire Life Sciences Institute (LPI) team for their continuous scientific and emotional support throughout this endeavor. The collaborative spirit within the team fostered an environment conducive to exploration and innovation.
-
-\textcolor{red}{IFB}
 
 % References
 \printbibliography
@@ -453,11 +494,33 @@ We also express our appreciation to the entire Life Sciences Institute (LPI) tea
      & \url{https://github.com/RosettaCommons/RoseTTAFold} \\
      & Google Colab Notebook: \\
      & \url{https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/RoseTTAFold.ipynb} \\
-    ChimeraX & Website: URL needed \\
-    BioPython & Website: URL needed \\
+    ChimeraX & GitHub Repository: \\
+    & \url{https://github.com/RBVI/ChimeraX} \\
+    & Website: \\
+    & \url{https://www.rbvi.ucsf.edu/chimerax/} \\
     \bottomrule
     \end{tabular}
 \end{table}
 
+\newpage
+
+\subsection*{Table of experimentally validated sequences}
+
+\begin{table}[ht]
+    \centering
+    \caption{Experimentally validated sequences and their corresponding target Protein Data Bank (PDB) IDs}
+    \begin{tabular}{|c|p{10cm}|}
+        \hline
+        \textbf{Target PDBID} & \textbf{Sequence} \\
+        \hline
+        2xgf & \seqsplit{DLEALRAAIRAEADARAAAFVARPPLTPAERAALAARLRARLAGRPDADARVAALRRLSPVAQLAERYRREAAERAAEVAALIPEGPEVAAYILQRANDAAATLRAAA} \\
+        \hline
+        7vs5 & \seqsplit{MSNTLEQKIISARAVDADALLARVLARLDALAAEDPSHAAELAALRATIAEAQALAATAAPIPLRDLAIALRERARALRAKDSAKNRRLVRLTDEAADLVRVLIAQALA} \\
+        \hline
+        7vs5 & \seqsplit{MSSTLEQKIISSKAVDVEELLKRVLERLEELEKKDPKHKEKLEELRKKIEKALELAKTSTYVPLLDLAIELENEAQKLRGENAKENSELVRLTDEAADLVRAMISKALQ} \\
+        \hline
+    \end{tabular}
+    \label{tab:sequences}
+\end{table}
 
 \end{document}  

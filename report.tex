@@ -7,6 +7,12 @@
 \usepackage{lipsum}
 \usepackage{url}
 \usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue, % or cyan
+    urlcolor=blue, % or cyan
+    citecolor=blue, % or cyan
+}
 \usepackage{csquotes}
 \usepackage{xcolor}
 \usepackage{booktabs}
@@ -55,14 +61,61 @@
 
 \begin{document}
 
-% Title
-\title{AI-assisted Design of virus-binding proteins for the International Genetically Engineered Machine comptetion}
-\author{Tony MAKDISSY\thanks{Learning Planet Institute}}
+% % Title
+% \title{AI-assisted Design of virus-binding proteins for the International Genetically Engineered Machine comptetion}
+% \author{Tony MAKDISSY\thanks{Learning Planet Institute}}
 
 
 
-\date{August 2023 -- November 2023}
-\maketitle
+
+% \date{August 2023 -- November 2023}
+% \maketitle
+
+\begin{titlepage}
+    \centering
+    
+    {\scshape\Large Learning Planet Institute \par}
+    % \vspace{1cm}
+    {\scshape\Large Université Paris Cité \par}
+    \vspace{0.5cm}
+    {\scshape\Large Master AIRE Life Sciences \par}
+
+    \begin{minipage}{0.25\textwidth}
+        \includegraphics[width=\linewidth]{Logos/UniversiteParisCite_logo_horizontal_couleur_RVB_Couleur.png}\par\vspace{1cm}
+        \includegraphics[width=\linewidth]{Logos/PIA_logo.png}\par\vspace{1cm}
+    \end{minipage}
+    \begin{minipage}{0.25\textwidth}
+        \includegraphics[width=\linewidth]{Logos/Copie de LPI_LOGO_RVB.png}\par\vspace{1cm}
+    \end{minipage}
+    \begin{minipage}{0.25\textwidth}
+        \includegraphics[width=\linewidth]{Logos/EURIP logo.png}\par\vspace{1cm}
+        \includegraphics[width=\linewidth]{Logos/SmartUP_1920-1 (1).png}\par\vspace{1cm}
+    \end{minipage}
+
+    {\scshape\Large AI-assisted Design of virus-binding proteins for the International
+    Genetically Engineered Machine competition iGEM \par}
+    \vspace{1cm}
+
+    {\huge\bfseries Tony MAKDISSY \par}
+    \vspace{1.5cm}
+
+    \textbf{Team Members:}
+    
+    Milena MILOVANOVIC, Avishkar JADHAV, Louis ELVERSTON, Mostafa ELRAIES, Joann LEVAY, Laure Mourgue D'ALGUE, Dakshayani PINNINTI, Stasa RAKOCEVIC, \\ and Hritika KATHURIA
+    \vspace{0.5cm}
+    
+    \textbf{Supervisors:}
+
+    Ariel LINDNER, Ernest MORDRET, Helena SHOMAR, and Amir PANDI
+
+    \vfill
+
+    % Bottom of the page
+    {\large Date: \today\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
 
 % Abstract
 \begin{abstract}
@@ -70,7 +123,7 @@
     \emph{De novo} protein design, the art of creating functional proteins from scratch, has evolved over the years, transitioning from manual structure crafting to sophisticated computational approaches. This report details our exploration in \emph{de novo} protein design, specifically focusing on the computational design pipeline developed to generate potential protein binders for immobilizing sexually transmitted infection (STI) proteins within a gel mesh network. Leveraging tools like RFdiffusion, HDOCK, and ChimeraX, we employed a theoretically automated workflow to inspect target proteins, select hotspots, and validate sequences through pull-down assays. Despite facing challenges in fully automating hotspot identification and GPU-dependent execution, our pipeline demonstrated promising results, with three sequences exhibiting positive binding to the T4 bacteriophage. The success of this proof-of-concept provides a foundation for scaling up the approach and exploring more complex protein designs.
     
     \end{abstract}
-    
+
 % General Context
 \section{General Context}
 
@@ -153,7 +206,7 @@ Along with the advancements in computational capabilities, DNA synthesis
 and high-throughput screening methods have accelerated \emph{de novo} protein 
 design. Recent achievements include the creation of mechanically 
 coupled  axle-rotor proteins by a team from the Baker lab, University 
-of Washington \cite{courbet2022computational}, where the team 
+of Washington \cite{courbet2022computational,bakerlab}, where the team 
 discovered a wide variety of designs aided by computational simulations.
 
 \subsection{Machine Learning in \emph{de novo} protein design}
@@ -193,51 +246,17 @@ and disease burden (82,000 deaths in 2019 from hepatitis B) \cite{paris_bettenco
 To achieve this goal, we used RFdiffusion to generate protein 
 sequences. We made this decision because of the impressive history of
 Baker lab (creating TOP7. RoseTTAFold, ProteinMPNN, the design
-of self-assembly mechanically coupled axle-rotor proteins, and many more).
-Also we found a lot of resources and tutorials on how to use RFdiffusion (online seminars about RFdiffusion
-\href{https://www.youtube.com/watch?v=wIHwHDt2NoI}{Link} and ProteinMPNN
-\href{https://youtu.be/aVQQuoToTJA?si=PnQvJluY3ZPHo4TO}{Link}).
-along with clean and well-documented code on GitHub \href{https://github.com/RosettaCommons/RFdiffusion}{Link}.
+of self-assembly mechanically coupled axle-rotor proteins, and many more) \cite{bakerlab}.
+Also we found a lot of resources and tutorials on how to use RFdiffusion (
+\href{https://www.youtube.com/watch?v=wIHwHDt2NoI}{online seminars about RFdiffusion} and 
+\href{https://youtu.be/aVQQuoToTJA?si=PnQvJluY3ZPHo4TO}{ProteinMPNN}).
+along with clean and well-documented code on \href{https://github.com/RosettaCommons/RFdiffusion}{GitHub}.
 
 \subsection{Free and Open-Source Software (FOSS)}
 
 It is noteworthy that every tool utilized in this project adheres to the principles of open-source and/or free usage. Our team advocates for the openness and accessibility of scientific endeavors to a broader audience. We exclusively employed tools that align with the tenets outlined in "What is Free Software?" \cite{gun_foss}. A comprehensive list of all the tools considered throughout the project is provided in Table \ref{tab:tools}.
-The entirety of our code is accessible on GitHub\textcolor{red}{, available here}. However, it requires further refinement and documentation.
-Additionally, all the papers and documents referenced in this report are freely accessible without the need for platforms like Sci-Hub.
-
-\begin{table}[ht]
-    \centering
-    \caption{List of Open-Source Tools Used in the Project}
-    \label{tab:tools}
-    \begin{tabular}{p{2.5cm}|p{14cm}}
-    \toprule
-    Tool name & Links \\
-    \midrule
-    RFDiffusion & GitHub Repository: \\
-     & \url{https://github.com/RosettaCommons/RFdiffusion} \\
-     & Google Colab Notebook: \\
-     & \url{https://colab.research.google.com/github/sokrypton/ColabDesign/blob/main/rf/examples/diffusion.ipynb} \\
-    HDOCK & Website: \url{http://hdock.phys.hust.edu.cn/} \\
-    AlphaFold2 & GitHub Repository: \\
-     & \url{https://github.com/google-deepmind/alphafold} \\
-     & Google Colab Notebook: \\
-     & \url{https://colab.research.google.com/github/deepmind/alphafold/blob/main/notebooks/AlphaFold.ipynb} \\
-    RosettaSurf & GitHub Repository: \\
-     & \url{https://github.com/LPDI-EPFL/RosettaSurf} \\
-    ESMFold & GitHub Repository: \\
-     & \url{https://github.com/facebookresearch/esm} \\
-     & Google Colab Notebook: \\
-     & \url{https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/ESMFold.ipynb} \\
-    RoseTTAFold & GitHub Repository: \\
-     & \url{https://github.com/RosettaCommons/RoseTTAFold} \\
-     & Google Colab Notebook: \\
-     & \url{https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/RoseTTAFold.ipynb} \\
-    ChimeraX & Website: URL needed \\
-    BioPython & Website: URL needed \\
-    \bottomrule
-    \end{tabular}
-\end{table}
-
+The entirety of our code is accessible on GitHub (\url{https://github.com/Tony-Makdissy/iGEM_2023}). However, it requires further refinement and documentation.
+Additionally, all the papers and documents referenced in this report are freely accessible without the need for platforms like Sci-Hub. The references can be found in the folder "Supplementary Data/References" which I will append to the final report.
 
 % Methods
 \section{Methods}
@@ -311,7 +330,7 @@ To identify hotspots, we employed ChimeraX functionalities such as "hydrophobic"
 
 \subsection{Running RFdiffusion}
 
-To reduce the target protein size, I developed a simple Python script, using Biopython library \cite{biopython}. The script takes as input a PDB file (or id), a list of hotspots and a radius (in Angstroms). It then outputs a new PDB file containing only the residues within the specified radius of the hotspots. The script is available on GitHub \textcolor{red}{here}. We wanted automate this step, in order to minimize the manual steps and the potential errors and biases introduced.
+To reduce the target protein size, I developed a simple Python script, using Biopython library \cite{biopython}. The script takes as input a PDB file (or id), a list of hotspots and a radius (in Angstroms). It then outputs a new PDB file containing only the residues within the specified radius of the hotspots. The script is available on the project's GitHub repository. We wanted to automate this step, in order to minimize the manual steps and the potential errors and biases introduced.
 
 These reduced structures are then manually used as input for RFdiffusion. To comply with legal restrictions, local code execution or connecting a local session to Google Colab is prohibited, as outlined in the \href{https://research.google.com/colaboratory/faq.html#disallowed-activities}{Google Colab disallowed activities}. Therefore, the results of the structure-reducing scripts were manually uploaded to the Google Colab Virtual Machine. Thankfully this step would not produce human biases, but it caused a significant delay in the process.
 
@@ -319,45 +338,46 @@ These reduced structures are then manually used as input for RFdiffusion. To com
 
 After completing the previous steps, the number of generated sequences reached the order of thousands. However, the practical constraints of our team's budget made it unfeasible to test all these sequences experimentally. To prioritize potential designs and narrow down the candidates for experimental validation, we sought an orthogonal approach for assessment.
 
-Through extensive research, we chose to employ HDOCK, an \emph{in-silico} binding tool \cite{yan2017hdock} known for its consistent performance in the CASP-CAPRI \cite{casp-capri} competition over the years. HDOCK utilizes a Fast-Fourier-Transformation-based docking algorithm, making it a fast rigid body docking tool. Additionally, HDOCK can be used locally, so I developed a Python script to parallelize the process and get all the needed statistics. The script utilizes the "multiprocessing" Python built-in module \cite{python_multiprocessing}. The code is available on GitHub \textcolor{red}{here}.
+Through extensive research, we chose to employ HDOCK, an \emph{in-silico} binding tool \cite{yan2017hdock} known for its consistent performance in the CASP-CAPRI \cite{casp-capri} competition over the years. HDOCK utilizes a Fast-Fourier-Transformation-based docking algorithm, making it a fast rigid body docking tool. Additionally, HDOCK can be used locally, so I developed a Python script to parallelize the process and get all the needed statistics. The script utilizes the "multiprocessing" Python built-in module \cite{python_multiprocessing}.
 
 By the end of this step, only the sequences deemed most likely to exhibit binding were retained for further experimental validation.
 
 
 \section{Results}
 
-After manually inspecting the following proteins:
+After manually inspecting four proteins:
 
 \begin{itemize}
-    \item HPV major capsid protein (Protein Data Bank id: 7kzf)
-    \item Bacteriophage T4 capsid (Protein Data Bank id: 7vs5)
-    \item Bacteriophage T4 Long-Tail (Protein Data Bank id: 2xgf)
-    \item GFP protein (Protein Data Bank id: 5b61)
+    \item HPV major capsid protein (PDB ID: 7kzf)
+    \item Bacteriophage T4 capsid (PDB ID: 7vs5)
+    \item Bacteriophage T4 Long-Tail (PDB ID: 2xgf)
+    \item GFP protein (PDB ID: 5b61)
 \end{itemize}
 
-I picked around 50 different sets of hotspots. Each set contains 2 to 4 hotspots. Each set of hotspots will be called a "run" from now on. A full table can be found in the attached table "Supplementary Data/Manual choices for hotsopts.csv" 
+I selected approximately 50 different sets of hotspots, each containing 2 to 6 hotspots, termed as a "run." Refer to the Supplementary Data for the complete table of manual hotspot choices can be found in the folder "Supplementary Data" which I will append to the final report under the name "Supplementary Data/Manual choices for hotsopts.csv" (an Excel file (.xlsx) or a link to google sheet might be visually better but Comma Speretaed Values (.csv) can be produced/read using many open source editors). 
 
-Each run can produce $S*Q$ sequences, where $S$ is the number of structure backbones that the RFdiffusion algorithm should predict in the first step, and $Q$ is the number of sequences generated per structure backbone using the NPMM step.
+Each run can generate $S*Q$ sequences, where $S$ represents the number of structure backbones predicted by the RFdiffusion algorithm in the initial step, and $Q$ is the number of sequences generated per structure backbone using the NPMM step.
 
-By the end of the project, I have generated around 1500 sequences. Which are not feasible to test experimentally. So I had to filter them out using HDOCK.
+By the project's conclusion, around 1500 sequences were generated, posing a challenge for experimental testing. To address this, a filtration step was employed using HDOCK.
 
-\subsection{HDOCK results}
+\subsection{HDOCK Results}
 
 \subsubsection{Introduction}
 
-Upon completing the preceding steps, we encountered a substantial pool of sequences, numbering in the thousands. The prospect of experimental testing for all these sequences posed a significant resource and time challenge.
+Following the sequence generation, we faced a substantial pool of thousands of sequences, necessitating a method to streamline experimental validation. An in-silico binding assay was chosen, drawing insights from the CASP-CAPRI competitions, renowned for assessing protein structure predictions.
 
-To streamline and curtail the number of sequences for experimental validation, we sought an in-silico binding assay. A comprehensive analysis of results from the Critical Assessment of Protein Structure Prediction (CASP) and Critical Assessment of Prediction of Interactions (CAPRI) collaborations, particularly the CASP-CAPRI competitions, proved pivotal. CASP and CAPRI orchestrate these competitions, engaging participants to predict structures of protein-protein complexes. Participants submit their predictions for evaluation, and rankings are made publicly accessible.
-
-Following an exhaustive examination of the top-ranking servers in the CASP-CAPRI competition, our selection converged on HDOCK, driven by its commendable attributes:
+After scrutinizing top-ranking servers in the CASP-CAPRI competition, HDOCK emerged as our choice, driven by its notable attributes:
 
 \begin{itemize}
-    \item \textbf{Efficiency:} HDOCK employs a high-speed rigid-body docking algorithm grounded in Fast Fourier Transform (FFT).
-    \item \textbf{Local Executability and Parallelizability:} In contrast to many web-hosted tools, HDOCK can be locally downloaded and executed. Furthermore, the docking process can be parallelized using the multiprocessing Python library.
-    \item \textbf{Proven Performance:} HDOCK achieved preeminence by securing the 1st rank in CASP-CAPRI11 and has continued to play a pivotal role in subsequent competitions.
+    \item \textbf{Efficiency:} HDOCK utilizes a high-speed rigid-body docking algorithm grounded in Fast Fourier Transform (FFT).
+    \item \textbf{Local Executability and Parallelizability:} In contrast to many web-hosted tools, HDOCK can be locally downloaded and executed, with docking processes parallelizable using the multiprocessing Python library.
+    \item \textbf{Proven Performance:} HDOCK secured the 1st rank in CASP-CAPRI11 and continued to excel in subsequent competitions.
 \end{itemize}
 
-The selection process involved choosing the best-scoring sequences while endeavoring to include sequences from almost all the runs. This strategic approach ensured a comprehensive representation for subsequent experimental validation.
+The selection criteria aimed at choosing high-scoring sequences while ensuring representation from various runs, enhancing the comprehensiveness of subsequent experimental validation.
+
+One limitation of HDOCK is its lack of experimentally calibrated scores. Scores are not comparable between different target proteins, leading us to compare scores only within the same target. The scores themselves lack a universally meaningful interpretation.
+
 
 \subsection{Experimental Validation through Pull-Down Assays}
 
@@ -391,5 +411,46 @@ We also express our appreciation to the entire Life Sciences Institute (LPI) tea
 
 % References
 \printbibliography
+
+\newpage
+
+\section*{Annexes}
+
+\subsection*{Table of free and open-source tools used in the project}
+
+
+\begin{table}[ht]
+    \centering
+    \caption{List of Open-Source Tools Used in the Project}
+    \label{tab:tools}
+    \begin{tabular}{p{2.5cm}|p{14cm}}
+    \toprule
+    Tool name & Links \\
+    \midrule
+    RFDiffusion & GitHub Repository: \\
+     & \url{https://github.com/RosettaCommons/RFdiffusion} \\
+     & Google Colab Notebook: \\
+     & \url{https://colab.research.google.com/github/sokrypton/ColabDesign/blob/main/rf/examples/diffusion.ipynb} \\
+    HDOCK & Website: \url{http://hdock.phys.hust.edu.cn/} \\
+    AlphaFold2 & GitHub Repository: \\
+     & \url{https://github.com/google-deepmind/alphafold} \\
+     & Google Colab Notebook: \\
+     & \url{https://colab.research.google.com/github/deepmind/alphafold/blob/main/notebooks/AlphaFold.ipynb} \\
+    RosettaSurf & GitHub Repository: \\
+     & \url{https://github.com/LPDI-EPFL/RosettaSurf} \\
+    ESMFold & GitHub Repository: \\
+     & \url{https://github.com/facebookresearch/esm} \\
+     & Google Colab Notebook: \\
+     & \url{https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/ESMFold.ipynb} \\
+    RoseTTAFold & GitHub Repository: \\
+     & \url{https://github.com/RosettaCommons/RoseTTAFold} \\
+     & Google Colab Notebook: \\
+     & \url{https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/RoseTTAFold.ipynb} \\
+    ChimeraX & Website: URL needed \\
+    BioPython & Website: URL needed \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
 
 \end{document}

@@ -1,28 +1,50 @@
-# Tony Makdissy's Internship Report
+<p align="center">
+  <a href="https://revealjs.com">
+  <img src="https://hakim-static.s3.amazonaws.com/reveal-js/logo/v1/reveal-black-text-sticker.png" alt="reveal.js" width="500">
+  </a>
+  <br><br>
+  <a href="https://github.com/hakimel/reveal.js/actions"><img src="https://github.com/hakimel/reveal.js/workflows/tests/badge.svg"></a>
+  <a href="https://slides.com/"><img src="https://s3.amazonaws.com/static.slid.es/images/slides-github-banner-320x40.png?1" alt="Slides" width="160" height="20"></a>
+</p>
 
-## Introduction
+reveal.js is an open source HTML presentation framework. It enables anyone with a web browser to create beautiful presentations for free. Check out the live demo at [revealjs.com](https://revealjs.com/).
 
-This report documents my internship experience at the Learning Planet Institute after completing the iGEM competition.
+The framework comes with a powerful feature set including [nested slides](https://revealjs.com/vertical-slides/), [Markdown support](https://revealjs.com/markdown/), [Auto-Animate](https://revealjs.com/auto-animate/), [PDF export](https://revealjs.com/pdf-export/), [speaker notes](https://revealjs.com/speaker-view/), [LaTeX typesetting](https://revealjs.com/math/), [syntax highlighted code](https://revealjs.com/code/) and an [extensive API](https://revealjs.com/api/).
 
-## Acknowledgments
+---
 
-I would like to express my gratitude to the Learning Planet Institute for providing me with this internship opportunity. I would also like to thank my mentors and colleagues for their guidance and support throughout the internship.
+Want to create reveal.js presentation in a graphical editor? Try <https://slides.com>. It's made by the same people behind reveal.js.
 
-## Main Files and Folders
+---
 
-- `README.md`: This file.
-- `internship_report.pdf`: The internship report.
-- `internship_report.tex`: The LaTeX source code of the report.
-- `references.bib`: The BibLaTeX bibliography file.
-- `Supplementary Data`: The supplementary data used in the report. And it contains:
-  - `Binding_video.mp4`: A video showing the binding of one of the designed binders to the target (referenced in "Further Analysis" subsection in the report).
-  - `Manual choices for hotsopts.csv`: The manual choices for the hotspots (referenced in "RFdiffusion Results" subsection in the report).
-  - `p01_run55_7vs5_vertex_C19_C22_B48_B49_J281_r30.pdb`: The PDB file of the designed binder (The same structure used in the video).
-  - `Figures/`: The figures used in the report.
-  - `References/`: The references used in the report.
+### Sponsors
+Hakim's open source work is supported by <a href="https://github.com/sponsors/hakimel">GitHub sponsors</a>. Special thanks to:
+<div align="center">
+  <table>
+    <td align="center">
+      <a href="https://workos.com/?utm_campaign=github_repo&utm_medium=referral&utm_content=revealjs&utm_source=github">
+        <div>
+          <img src="https://user-images.githubusercontent.com/629429/151508669-efb4c3b3-8fe3-45eb-8e47-e9510b5f0af1.svg" width="290" alt="WorkOS">
+        </div>
+        <b>Your app, enterprise-ready.</b>
+        <div>
+          <sub>Start selling to enterprise customers with just a few lines of code. Add Single Sign-On (and more) in minutes instead of months.</sup>
+        </div>
+      </a>
+    </td>
+  </table>
+</div>
 
-## Other Files and Folders
+---
 
-- `biblatex-cheatsheet.pdf`: A cheat sheet for BibLaTeX.
-- `useful_links.md`: Some useful links I used during the report.
-- `Logos`: The logos used at the beginning of the report.
+### Getting started
+- 🚀 [Install reveal.js](https://revealjs.com/installation)
+- 👀 [View the demo presentation](https://revealjs.com/demo)
+- 📖 [Read the documentation](https://revealjs.com/markup/)
+- 🖌 [Try the visual editor for reveal.js at Slides.com](https://slides.com/)
+- 🎬 [Watch the reveal.js video course (paid)](https://revealjs.com/course)
+
+--- 
+<div align="center">
+  MIT licensed | Copyright © 2011-2024 Hakim El Hattab, https://hakim.se
+</div>

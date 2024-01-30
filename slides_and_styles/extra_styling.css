@@ -1,0 +1,91 @@
+.reveal .slide-number {
+    background-color: rgba(0, 0, 0, 0.0);
+    font-size: 24pt;
+    color: #000000;
+    /* position: absolute; */
+    bottom: 0;
+    right: 50%;
+
+}
+
+#title-slide{
+    font-size: 10pt;
+    /* background-color: bisque; */
+}
+
+#igem-bettencourt-1 {
+    width: 70%;
+    margin: 0 auto; /* centers the section horizontally */
+    padding-left: 140px; /* pushes content to the right */
+}
+
+#igem-bettencourt-1 .grid-container {
+    display: grid;
+    grid-template-columns: 1fr; /* creates one column */
+    grid-gap: 20px; /* adjust as needed */
+}
+
+#igem-bettencourt-1 .column {
+    display: grid;
+    grid-template-rows: 4fr 2fr; /* 4 parts for images, 1 part for captions */
+}
+
+#igem-bettencourt-1 .image-wrapper {
+    display: flex;
+    align-items: center; /* centers vertically */
+    justify-content: center; /* centers horizontally */
+}
+
+#igem-bettencourt-1 .image-wrapper img {
+    width: 60%;
+    height: auto;
+    object-fit: contain; /* scales images to fit their containers without cropping */
+}
+
+#igem-bettencourt-1 .caption {
+    width: 100%;
+    word-wrap: break-word; /* wraps text to the next line */
+}
+
+#igem-bettencourt-2 {
+    width: 100%;
+}
+
+#igem-bettencourt-2 .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* creates two columns */
+    grid-gap: 20px; /* adjust as needed */
+}
+
+#igem-bettencourt-2 .column {
+    display: grid;
+    grid-template-rows: 4fr 2fr; /* 4 parts for images, 1 part for captions */
+}
+
+#igem-bettencourt-2 .image-wrapper {
+    display: flex;
+    align-items: center; /* centers vertically */
+    justify-content: center; /* centers horizontally */
+}
+
+#igem-bettencourt-2 .image-wrapper img {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* scales images to fit their containers without cropping */
+}
+
+#igem-bettencourt-2 .caption {
+    width: 100%;
+    word-wrap: break-word; /* wraps text to the next line */
+}
+
+#lubritect-1 .points-to-count .div{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2[data-id="motto"] {
+    transition: opacity 1s ease-in-out;
+}
+    

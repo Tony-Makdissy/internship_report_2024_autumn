@@ -3,7 +3,8 @@ var slides = ['setup_theme.html',
     'title.html',
     'igem_bettencourt.html',
     'lubritect.html',
-    'vircap.html'
+    'vircap.html',
+    'protein_design_difficulty.html'
 ];
 
 // Function to load a slide file
@@ -22,6 +23,7 @@ Promise.all(slides.map(loadSlide))
             hash: true,
             slideNumber: true,
             autoPlayMedia: true,
+            transition: 'convex', // none/fade/slide/convex/concave/zoom
             // Learn about plugins: https://revealjs.com/plugins/
             plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
         });

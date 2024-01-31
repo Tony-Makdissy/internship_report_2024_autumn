@@ -4,7 +4,15 @@ var slides = ['setup_theme.html',
     'igem_bettencourt.html',
     'lubritect.html',
     'vircap.html',
-    'protein_design_difficulty.html'
+    // 'protein_design_difficulty.html',
+    // 'computers_can_predict.html',
+    'rfdiffusion.html',
+    'manual_steps.html',
+    'hdock.html',
+    'pipeline.html',
+    'results.html',
+    'future_steps.html',
+    'end.html'
 ];
 
 // Function to load a slide file

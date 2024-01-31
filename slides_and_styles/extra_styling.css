@@ -88,4 +88,35 @@
 h2[data-id="motto"] {
     transition: opacity 1s ease-in-out;
 }
-    
+
+#computers-can-predict-1 {
+    width: 100%;
+}
+
+#computers-can-predict-1 .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* creates two columns */
+    grid-gap: 20px; /* adjust as needed */
+}
+
+#computers-can-predict-1 .column {
+    display: grid;
+    grid-template-rows: 4fr 2fr; /* 4 parts for images, 1 part for captions */
+}
+
+#computers-can-predict-1 .image-wrapper {
+    display: flex;
+    align-items: center; /* centers vertically */
+    justify-content: center; /* centers horizontally */
+}
+
+#computers-can-predict-1 .image-wrapper img {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* scales images to fit their containers without cropping */
+}
+
+#computers-can-predict-1 .caption {
+    width: 100%;
+    word-wrap: break-word; /* wraps text to the next line */
+}
